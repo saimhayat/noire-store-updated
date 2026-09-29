@@ -1,0 +1,69 @@
+/* ---------------------------------------------------------------
+   NOIRÉ — the shop
+
+   White paper, black ink, one hairline rule. Nothing in the interface
+   is coloured: colour belongs to the photographs, so the palette is
+   paper, three greys, and a single red that only ever marks a markdown.
+   --------------------------------------------------------------- */
+:root {
+  /* paper */
+  --paper: #ffffff;
+  --paper-2: #faf9f7;
+  --paper-3: #f5f3f0;
+  --paper-4: #edebe6;
+
+  /* ink */
+  --ink: #14161a;
+  --ink-2: #4b4f56;
+  --ink-3: #7c8087;
+  --ink-4: #a8abb1;
+
+  /* The older names are kept as aliases: every rule written against them now
+     reads the right value on paper instead of being rewritten twice. */
+  --bone: #14161a;
+  --graphite: #ffffff;
+  --slate: #f5f3f0;
+  --steel: #7c8087;
+
+  --line: rgba(20, 22, 26, 0.11);
+  --line-loud: rgba(20, 22, 26, 0.26);
+
+  /* the primary action is black, and it is the only thing that is */
+  --key: #14161a;
+  --key-hot: #2b2f36;
+  --key-dim: rgba(20, 22, 26, 0.08);
+
+  --sale: #a8342a;
+  --sale-dim: rgba(168, 52, 42, 0.09);
+  --ok: #3c6450;
+
+  --font-body: 'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Hanken Grotesk', system-ui, -apple-system, sans-serif;
+  --font-editorial: 'Bodoni Moda', 'Times New Roman', serif;
+
+  /* type scale — small labels, restrained headings, one editorial size */
+  --fs-nano: 0.6875rem;
+  --fs-micro: 0.8125rem;
+  --fs-body: 0.9375rem;
+  --fs-lede: clamp(1rem, 1.1vw, 1.125rem);
+  --fs-h4: clamp(1.0625rem, 1.25vw, 1.25rem);
+  --fs-h3: clamp(1.3rem, 2vw, 1.8rem);
+  --fs-h2: clamp(1.55rem, 2.8vw, 2.4rem);
+  --fs-h1: clamp(2rem, 4.2vw, 3.6rem);
+  --fs-display: clamp(2.4rem, 5.4vw, 4.8rem);
+
+  --pad: clamp(1rem, 4vw, 3.5rem);
+  --maxw: 96rem;
+  --nav-h: 4.25rem;
+  --ann-h: 2.375rem;
+  /* the header measures itself on mount; this is the value before it does */
+  --hdr-h: 6.625rem;
+  --section-y: clamp(3.25rem, 7.5vw, 6.5rem);
+  --gutter: clamp(0.75rem, 1.6vw, 1.5rem);
+
+  --radius: 2px;
+  --radius-lg: 4px;
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-soft: cubic-bezier(0.16, 1, 0.3, 1);
+}

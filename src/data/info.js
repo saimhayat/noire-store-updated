@@ -1,0 +1,322 @@
+/* The written part of the site: every support and company page is a stack of
+   blocks of one of four kinds, so /faq, /shipping and /story are all one
+   component reading this file. Kept here rather than in JSX because it is copy,
+   not layout. */
+
+import { BRANDS, DEPARTMENTS, products } from './products.js';
+import { EDITORIAL } from './photography.js';
+
+export const INFO = {
+  faq: {
+    title: 'Questions, answered',
+    lede: 'The ones we are asked most, written by the people who cut the cloth.',
+    blocks: [
+      {
+        kind: 'accordion',
+        heading: 'Orders and sizing',
+        items: [
+          { q: 'How do your pieces fit?', a: 'Oversized by design: dropped shoulder, generous body, length kept long. If you usually take your size for the drawn cut, take one down for a shaped look. Every product page carries the same chart the atelier cuts from.' },
+          { q: 'Will you restock a sold-out piece?', a: 'If it is a staple, yes — the pieces that sell out first are reordered every season. A one-off release is not repeated: when that run closes, it closes. Either way the size you want can be reserved by asking us.' },
+          { q: 'When will my order leave?', a: 'Orders placed before 13:00 leave the same working day. Everything else goes the next. You get a tracking number the moment the label is printed.' }
+        ]
+      },
+      {
+        kind: 'accordion',
+        heading: 'Cloth and care',
+        items: [
+          { q: 'How should I wash it?', a: 'Cold, gentle, inside out, and line dry in shade. Cotton lawn relaxes about 2% lengthways on the first wash and then stops. Embroidery and the wool-silk pashmina prefer a wash bag and a flat dry, or dry cleaning.' },
+          { q: 'Do the prints and dyes hold?', a: 'Block prints are cured on the cloth, not printed onto it, so they fade slowly and evenly. Colours will run a little on the first two washes — wash separately in cold water, never hot, and never soak a hand-worked piece.' },
+          { q: 'Something has torn. Can you fix it?', a: 'Yes, free, for as long as you own it. Seams, linings, buttons and moth holes; you pay the postage one way and we return it pressed.' }
+        ]
+      },
+      {
+        kind: 'accordion',
+        heading: 'Delivery and returns',
+        items: [
+          { q: 'Do you ship outside Pakistan?', a: 'To the UAE, the UK, the EU and North America. Duties are calculated at checkout, so nothing is collected at your door.' },
+          { q: 'How long do I have to send something back?', a: 'Thirty days from delivery, unworn, with the tag still attached. Start it from your order confirmation and we send the label.' },
+          { q: 'Can I change my mind about a size?', a: 'Yes — exchanges are free across Pakistan. Reply to your order email and we will reserve the size while yours is in transit.' }
+        ]
+      }
+    ]
+  },
+
+  shipping: {
+    title: 'Shipping',
+    lede: 'Held in our own stock and dispatched within a working day, tracked, anywhere in Pakistan.',
+    blocks: [
+      {
+        kind: 'prose',
+        heading: 'How it leaves the shop',
+        body: [
+          'We hold the stock rather than passing an order to a supplier, so what the site calls in stock is on a shelf. Orders placed before 13:00 go out the same working day; after that they leave the next morning. Tracking is emailed the moment the label prints, not when the van moves.',
+          'Pieces travel folded in a card sleeve with a paper wrap — no poly bag, no branded tissue. The sleeve doubles as the packing slip and the returns label, printed on the same stock.'
+        ]
+      },
+      {
+        kind: 'table',
+        heading: 'Times and rates',
+        rows: [
+          ['Karachi, Lahore, Islamabad', '1–2 working days', 'Rs. 300 · free over Rs. 5,000'],
+          ['Rest of Pakistan', '2–4 working days', 'Rs. 300 · free over Rs. 5,000'],
+          ['United Arab Emirates', '4–6 working days', 'Rs. 2,900 · duties included'],
+          ['United Kingdom, EU', '5–8 working days', 'Rs. 4,200 · duties included'],
+          ['North America', '6–9 working days', 'Rs. 5,400 · duties included']
+        ],
+        cols: ['Destination', 'Delivery', 'Rate']
+      },
+      {
+        kind: 'list',
+        heading: 'What we promise',
+        items: [
+          { term: 'Same-day dispatch', detail: 'Before 13:00, Monday to Friday.' },
+          { term: 'Cash on delivery', detail: 'Available to Rs. 50,000, anywhere we deliver in Pakistan.' },
+          { term: 'Signature over speed', detail: 'Parcels over Rs. 50,000 need a signature; the rest does not.' },
+          { term: 'Lost in transit', detail: 'Declared lost after seven days without a scan, replaced free.' }
+        ]
+      }
+    ]
+  },
+
+  returns: {
+    title: 'Returns and exchanges',
+    lede: 'Thirty days, one form, no restocking fee — the way it should be.',
+    blocks: [
+      {
+        kind: 'prose',
+        heading: 'The short version',
+        body: [
+          'Send it back unworn, with the tag still attached, within thirty days of delivery. Start from your order confirmation and the label is generated for you. Exchanges are free across Pakistan; refunds land on the original payment method within five working days of the parcel arriving.',
+          'A garment that has been worn is not a garment we can resell, so we do ask that the piece comes back as it left. If something is wrong with it — a fault, a pulled seam, a shade that does not match — say so and we cover the postage both ways.'
+        ]
+      },
+      {
+        kind: 'list',
+        heading: 'Three states we accept',
+        items: [
+          { term: 'Unworn', detail: 'Tags and card attached, no scent, no creases beyond the fold.' },
+          { term: 'Faulty', detail: 'Any fault at all: we pay the postage both ways and refund in full.' },
+          { term: 'Exchanged', detail: 'Free across Pakistan; we reserve your size while yours travels back.' }
+        ]
+      },
+      {
+        kind: 'table',
+        heading: 'How long a refund takes',
+        rows: [
+          ['Card', '1–3 working days after arrival'],
+          ['Wallet transfer', '1–3 working days after arrival'],
+          ['Cash on delivery', 'Refunded by transfer, 3–5 working days']
+        ],
+        cols: ['Method', 'To land']
+      }
+    ]
+  },
+
+  about: {
+    title: 'About NOIRÉ',
+    lede: `Our own label, and ${BRANDS.length} houses we buy from beside it.`,
+    blocks: [
+      {
+        kind: 'prose',
+        heading: `${products.length} pieces, ${DEPARTMENTS.length} departments`,
+        body: [
+          `NOIRÉ began as one collection a season, cut from three cloths in runs of forty, and that is still how the house label works. The shop around it is larger: ${BRANDS.length} labels we buy from, and departments for footwear, leather bags and hand-worked jewellery that we do not cut ourselves.`,
+          'What holds it together is that we hold the stock. Every piece on the site is on our own shelf, which is why the site can tell you how many are left, and why a repair on anything we cut can outlast the season it was bought in.'
+        ]
+      },
+      {
+        kind: 'list',
+        heading: 'How the house works',
+        items: [
+          { term: 'Cloth first', detail: 'Four mills in Punjab and Sindh, four cloths, bought whole before a pattern is drawn.' },
+          { term: 'Runs of forty', detail: 'The house label releases forty pieces per size run. House staples return; one-offs do not.' },
+          { term: 'One table', detail: 'Every NOIRÉ pattern cut in the same Lahore room since 1974, tested on a body, cut again.' },
+          { term: 'Repaired free', detail: 'Seams, linings, buttons and torn embroidery, for as long as you own it.' }
+        ]
+      }
+    ]
+  },
+
+  story: {
+    title: 'Our story',
+    lede: 'It started with a bolt of khaddar nobody wanted.',
+    blocks: [
+      {
+        kind: 'prose',
+        heading: 'Faisalabad, 2019',
+        body: [
+          'A mill in Faisalabad had four hundred metres of undyed handloom khaddar left over from an order that never shipped. It was too heavy for a summer kameez and too plain for a formal, and it was priced like seconds. We bought all of it and took the bus home.',
+          'What followed was two years of cutting it badly before cutting it well. The first run of forty kurtas had collars that would not lie flat; the second had sleeves set a centimetre low. The third is the one on the site now, and the pattern has not moved since.',
+          'The name came later, and mostly as a joke about how much of the palette turned out to be black. The lamp is the only warm thing in the room — in the studio, and here.'
+        ]
+      },
+      {
+        kind: 'list',
+        heading: 'Since then',
+        items: [
+          { term: '2019', detail: 'Four hundred metres of Faisalabad khaddar, and one badly cut kurta.' },
+          { term: '2021', detail: 'The Lahore table; the first run of forty that we were willing to sell.' },
+          { term: '2023', detail: 'Three further cloths: a Lahore lawn, a Karachi wool-silk pashmina and a Sialkot leather.' },
+          { term: '2026', detail: `${products.length} pieces on the shelf, ${BRANDS.length} houses, and the same three mills.` }
+        ]
+      }
+    ]
+  },
+
+  careers: {
+    title: 'Careers',
+    lede: 'Eleven people in Lahore, and occasionally one more.',
+    blocks: [
+      {
+        kind: 'prose',
+        heading: 'Working here',
+        body: [
+          'The house is deliberately small: cutters, a machinist, two in the studio, one who answers every email you write. We hire when the work stops fitting in the day, not before.',
+          'If nothing below fits and you still think you should be here, write to us anyway — the best two people we have hired did exactly that.'
+        ]
+      },
+      {
+        kind: 'table',
+        heading: 'Open now',
+        rows: [
+          ['Pattern cutter', 'Lahore · Full time', 'Five years minimum; draping, not just digitising.'],
+          ['Studio producer', 'Lahore · Full time', 'Owns the shoot calendar from brief to delivery.'],
+          ['Customer care', 'Remote, Pakistan · Part time', 'You will write every reply yourself.']
+        ],
+        cols: ['Role', 'Where', 'What it is']
+      },
+      {
+        kind: 'list',
+        heading: 'What we offer',
+        items: [
+          { term: 'Four-day cutting week', detail: 'Friday is for the table, not for email.' },
+          { term: 'Piece from every run', detail: 'One garment a season, in your size, before release.' },
+          { term: 'No unpaid tests', detail: 'If we ask for work, we pay for it.' }
+        ]
+      }
+    ]
+  },
+
+  sizeguide: {
+    title: 'Size guide',
+    lede: 'Measured flat on the garment. NOIRÉ cuts oversized, so these are finished measurements, not body measurements.',
+    blocks: [{ kind: 'sizechart' }]
+  },
+
+  notfound: {
+    title: 'Nothing cut here',
+    lede: 'That address does not match a page on this site — the collection, the written pages and the journal are all still where you left them.',
+    cta: { to: '/shop', label: 'Back to the shop' },
+    blocks: [
+      {
+        kind: 'prose',
+        heading: 'While you are here',
+        body: [
+          'The usual suspects: a piece that sold out and took its URL with it, a link typed one character short, or a bookmark from a season we have closed.',
+          'If you followed a link from us and it landed here, write to orders@noire.example and we will tell you what it should have been.'
+        ]
+      }
+    ]
+  },
+
+  terms: {
+    title: 'Terms',
+    lede: 'The plain terms the house trades on, without the small print.',
+    blocks: [
+      {
+        kind: 'prose',
+        heading: 'What you are agreeing to',
+        body: [
+          'An order is an offer; it is accepted when the parcel leaves our warehouse, and not before. Prices are shown in Pakistani rupees and include GST. A run of forty is a run of forty — if a piece sells out while you are checking out, we cancel and refund rather than substitute.',
+          'This site is a demonstration build: no payment provider is connected, no card is charged, and no order is transmitted anywhere. The confirmation you see after placing one is written to your own device and read back by the confirmation page. Names, addresses and card details are never sent to a server, and nothing is stored beyond that one record.',
+          'The writing, photography and patterns are the house\'s. Take them as an example of how we think about cloth, not as material to reprint.'
+        ]
+      }
+    ]
+  },
+
+  privacy: {
+    title: 'Privacy',
+    lede: 'What this site knows about you, which is close to nothing.',
+    blocks: [
+      {
+        kind: 'list',
+        heading: 'Stored on this device',
+        items: [
+          { term: 'Your bag', detail: 'What is in the cart, so it survives a refresh. Cleared when an order is placed.' },
+          { term: 'Your wishlist', detail: 'The ids of the pieces you saved.' },
+          { term: 'Your orders', detail: 'The receipts placed on this device, so the confirmation and the account page can show them. The last twelve are kept.' }
+        ]
+      },
+      {
+        kind: 'prose',
+        heading: 'What is never collected',
+        body: [
+          'No analytics, no advertising identifiers, no account, no server-side log of your visit. The card fields on the checkout page are validated in your browser and discarded; nothing typed there is stored or transmitted.',
+          'Fonts and photographs are served by third parties (Google Fonts and Pexels), so those hosts see the request. Unsubscribing from the letter is a click, and signing up for it currently stores nothing at all.'
+        ]
+      }
+    ]
+  }
+};
+
+export const CONTACT = {
+  title: 'Contact',
+  lede: 'One person reads every message. She is in Lahore and answers within a working day.',
+  rows: [
+    { term: 'Orders and returns', detail: 'orders@noire.example · reply to your order email for anything already placed' },
+    { term: 'Sizing', detail: 'fit@noire.example · send your height and usual size and we will pick one for you' },
+    { term: 'The shop', detail: 'customer care, Karachi · Monday to Saturday, 10:00–19:00 PKT · +92 21 000 0000' },
+    { term: 'The cutting room', detail: 'Ferozepur Road, Lahore · visits by appointment, Tuesday to Thursday' }
+  ]
+};
+
+export const JOURNAL = [
+  {
+    slug: 'four-hundred-metres',
+    title: 'Four hundred metres of khaddar',
+    date: '18 September 2026',
+    read: '4 min',
+    tag: 'Cloth',
+    image: EDITORIAL.journal[0],
+    excerpt: 'How a mill’s leftover bolt turned into the only cloth we cut.',
+    body: [
+      'The khaddar arrived in a roll that had been sitting against a wall for two years. It was heavier than the order had specified — 240 grams against a requested 180 — and undyed, which the buyer had not asked for either. Neither was what anyone wanted, which is how it ended up in a room in Lahore for the price of the freight.',
+      'Undyed cotton is not white. It is the colour of the water and the soil it was woven in, and a run of yarn varies enough that two bales can sit a shade apart. Rather than correct that, we graded the pattern for it: panels are cut in the order they will be seamed, so a shift in tone falls across a seam instead of a sleeve.',
+      'What the extra weight buys is a garment that holds its own shape. The drape you see on the stand is not a lining or an interfacing — it is gravity acting on cloth heavy enough to hang rather than flutter. The trade is that it will not pack small, and that you will feel it in the first hour and forget it in the second.',
+      'Four hundred metres was forty runs of forty. We are somewhere in the middle of them. When the roll ends, the piece ends with it, and the next thing we cut will be decided by whatever a mill has left over.'
+    ]
+  },
+  {
+    slug: 'forty-then-close',
+    title: 'Forty, then close the cut',
+    date: '2 September 2026',
+    read: '3 min',
+    tag: 'The house',
+    image: EDITORIAL.journal[1],
+    excerpt: 'Why nothing is ever restocked, and what that costs us.',
+    body: [
+      'Every piece we release comes in a run of forty per size run. When those go, the pattern is closed. Not paused, not awaiting a second colourway — closed, the way a paper pattern is filed after the marker is spent.',
+      'The obvious reason is cloth: four mills, four cloths, bought whole. There is no more of this season’s khaddar to order, and if there were, it would be a different roll with a different shade and we would be lying to you about consistency.',
+      'The less obvious reason is that a permanent catalogue asks you to buy out of obligation. A piece that can always be bought is a piece you can always defer. Forty pieces creates a decision, and a decision is the point.',
+      'What it costs us is straightforward: no back catalogue, no bestsellers carried forever, and a great deal of explaining. What it buys is that everything on the site exists because someone chose it while it was there.'
+    ]
+  },
+  {
+    slug: 'eleven-people',
+    title: 'Eleven people and one lamp',
+    date: '21 August 2026',
+    read: '5 min',
+    tag: 'Atelier',
+    image: EDITORIAL.journal[2],
+    excerpt: 'A day in the Lahore room where every pattern has been cut since 1974.',
+    body: [
+      'The room is long and low, with one north window and a single lamp over the cutting table that has been there longer than anyone currently employed. Photographs of the house are taken under it because it is the only light in the building that flatters cloth.',
+      'A day starts with the marker: yesterday’s lay, today’s order, and however many metres of cloth unrolled across four metres of table. The cutter walks the length of it twice before the knife goes anywhere, looking for the flaw in the roll that every roll has.',
+      'Then the machinists. Two of them, both faster than any machine we could afford, both with opinions about seam allowance that are respected accordingly. A kameez passes through nine hands before it is pressed, and the last hand is the one that holds it up to the lamp.',
+      'Nothing here scales, deliberately or otherwise. If the answer to a season is “more”, the answer has to be more cloth, not more people — because the thing worth buying is the attention, and attention does not divide.'
+    ]
+  }
+];
+
+export const journalPost = (slug) => JOURNAL.find((p) => p.slug === slug);
